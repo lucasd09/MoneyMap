@@ -1,15 +1,49 @@
-import Link from "next/link"
-import { Label } from "@/components/label"
-import { Input } from "@/components/input"
-import { Button } from "@/components/button"
-import { TwitterLogoIcon } from "@radix-ui/react-icons"
-import { Chrome, DollarSign } from "lucide-react"
+'use client';
+import Link from "next/link";
+import { Button } from "@/components/button";
+import { TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Chrome, DollarSign } from "lucide-react";
+import { Form } from "@/components/form";
+import { TextInput } from "@/components/inputs/text-input";
+import { useForm } from "react-hook-form";
+import { type LoginFormData, loginSchema } from "./types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { login } from "./actions";
+import { toast } from "sonner"
+import { useRouter } from "next/navigation";
+import { useToken } from "@/globals/stores/use-token";
+
 
 export default function Page() {
+
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const router = useRouter();
+  const { setToken } = useToken()
+
+  const handleLogin = async (data: LoginFormData) => {
+    const { email, password } = data;
+
+    const res = await login({ email, password })
+
+    if (!res?.token) {
+      form.setError('root', { type: 'validate', message: 'Credenciais inválidas' })
+      toast('Credenciais inválidas!');
+      return;
+    }
+
+    const { id, name } = res.userToken;
+
+    setToken({ id, name, token: res.token });
+    router.push('/dashboard');
+  }
+
   return (
     <div className="flex min-h-[100dvh] flex-col bg-background">
       <header className="flex items-center justify-between px-4 py-3 shadow sm:px-6 lg:px-8">
-        <Link href="#" className="flex items-center" prefetch={false}>
+        <Link href="/" className="flex items-center" prefetch={false}>
           <DollarSign className="h-6 w-6" />
           <span className="ml-2 text-lg font-medium">Money Map</span>
         </Link>
@@ -25,27 +59,15 @@ export default function Page() {
             <h1 className="text-3xl font-bold">Entre com a sua conta</h1>
             <p className="text-muted-foreground">Insira suas credenciais para acessar o aplicativo.</p>
           </div>
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Entrar
-            </Button>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">Ou entre com</span>
-            </div>
-          </div>
+          <Form {...form}>
+            <form className="space-y-2" onSubmit={form.handleSubmit(handleLogin)}>
+              <TextInput form={form} label="Email" name="email" />
+              <TextInput form={form} label="Senha" name="password" type="password" />
+              <Button type="submit" className="w-full">
+                Entrar
+              </Button>
+            </form>
+          </Form>
           <div className="grid grid-cols-3 gap-4">
             <Button variant="outline" className="flex items-center justify-center">
               <Chrome className="h-4 w-4" />

@@ -1,11 +1,33 @@
+'use client'
 import Link from "next/link"
-import { Label } from "@/components/label"
-import { Input } from "@/components/input"
 import { Button } from "@/components/button"
-import { TwitterLogoIcon } from "@radix-ui/react-icons"
-import { Chrome, DollarSign } from "lucide-react"
+import { DollarSign } from "lucide-react"
+import { Form } from "@/components/form"
+import { TextInput } from "@/components/inputs/text-input"
+import { useForm } from "react-hook-form"
+import { type RegisterFormData, registerSchema } from "./types"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { register } from "./actions"
 
 export default function Page() {
+
+  const form = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const handleRegister = async (data: RegisterFormData) => {
+    const { name, email, password, confirmPassword } = data;
+
+    if (password !== confirmPassword) {
+      form.setError("confirmPassword", { type: "validate", message: 'Senhas não coincidem' })
+      return;
+    }
+
+    const userToken = await register({ name, email, password });
+
+    console.log(userToken);
+  }
+
   return (
     <div className="flex min-h-[100dvh] flex-col bg-background">
       <header className="flex items-center justify-between px-4 py-3 shadow sm:px-6 lg:px-8">
@@ -25,23 +47,17 @@ export default function Page() {
             <h1 className="text-3xl font-bold">Crie sua conta</h1>
             <p className="text-muted-foreground">Insira suas credenciais para acessar o aplicativo.</p>
           </div>
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input id="password" type="password" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="repeatPassword">Repetir Senha</Label>
-              <Input id="repeatPassword" type="repeatPassword" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Entrar
-            </Button>
-          </div>
+          <Form {...form}>
+            <form className="space-y-2" onSubmit={form.handleSubmit(handleRegister)}>
+              <TextInput form={form} label="Nome" name="name" />
+              <TextInput form={form} label="Email" name="email" />
+              <TextInput form={form} label="Senha" name="password" type="password" />
+              <TextInput form={form} label="Confirmar Senha" name="confirmPassword" type="password" />
+              <Button type="submit" className="w-full">
+                Cadastrar
+              </Button>
+            </form>
+          </Form>
         </div>
       </main>
     </div>
