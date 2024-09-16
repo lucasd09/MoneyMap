@@ -13,8 +13,10 @@ export default function RootLayout({
 }: PropsWithChildren) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
-			<Toaster />
+			<body>
+				{children}
+				<Toaster />
+			</body>
 		</html>
 	);
 }

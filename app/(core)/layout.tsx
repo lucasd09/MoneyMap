@@ -1,4 +1,5 @@
 'use client';
+import { Sidebar } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { useToken } from "@/globals/stores/use-token";
 import { useRouter } from "next/navigation";
@@ -15,14 +16,15 @@ export default function AppLayout({ children }: PropsWithChildren) {
     return;
   }
 
-  return <div>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
+  return <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    enableSystem
+    disableTransitionOnChange
+  >
+    <div className="flex">
+      <Sidebar />
       {children}
-    </ThemeProvider>
-  </div>
+    </div>
+  </ThemeProvider>
 }
