@@ -10,7 +10,6 @@ import {
   User,
   Wallet
 } from "lucide-react";
-import Link from "next/link";
 import { ThemeToggle } from "../theme-toggle";
 import { NavButton } from "./components/nav-button";
 
