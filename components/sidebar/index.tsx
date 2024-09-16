@@ -6,20 +6,26 @@ import {
   BarChart3,
   CreditCard,
   DollarSign,
-  Home, Settings,
+  Home, LogOut, Settings,
   User,
   Wallet
 } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { NavButton } from "./components/nav-button";
+import { useToken } from "@/globals/stores/use-token";
 
 export const Sidebar = () => {
 
   const { isOpen, setIsOpen } = useSidebar();
+  const { clearToken } = useToken();
 
   const handleSidebar = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    clearToken();
+  };
 
   return (
     <div className={cn("flex h-screen flex-col justify-between border-r bg-background transition-all duration-150 ease-out", isOpen ? 'w-64' : 'w-[53px]')}>
@@ -40,9 +46,10 @@ export const Sidebar = () => {
         </nav>
       </div>
       <nav className={cn('flex justify-evenly items-center gap-2 mb-4', !isOpen && 'flex-col')}>
-        <NavButton title="" path="/profile" Icon={User} variant="outline" />
-        <NavButton title="" path="/settings" Icon={Settings} variant="outline" />
+        <NavButton path="/profile" Icon={User} variant="outline" />
+        <NavButton path="/settings" Icon={Settings} variant="outline" />
         <ThemeToggle />
+        <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
       </nav >
     </div >
   )
