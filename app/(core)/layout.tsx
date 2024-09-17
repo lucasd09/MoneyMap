@@ -1,4 +1,5 @@
 'use client';
+
 import { Sidebar } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { useToken } from "@/globals/stores/use-token";
@@ -11,7 +12,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
   const { token } = useToken();
 
   if (!token) {
-    router.push('/login')
+    router.push('/login');
 
     return;
   }
@@ -24,7 +25,9 @@ export default function AppLayout({ children }: PropsWithChildren) {
   >
     <div className="flex bg-muted">
       <Sidebar />
-      {children}
+      <div className="grow">
+        {children}
+      </div>
     </div>
   </ThemeProvider>
 }

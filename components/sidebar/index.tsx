@@ -29,7 +29,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className={cn("flex h-screen flex-col justify-between border-r bg-background dark:bg-muted dark:border-muted-foreground/20 transition-all duration-150 ease-out", isOpen ? 'w-64' : 'w-[53px]')}>
+    <aside className={cn("flex h-screen flex-col justify-between border-r bg-background dark:bg-muted dark:border-muted-foreground/20 transition-all duration-150 ease-out", isOpen ? 'w-64' : 'w-[53px]')}>
       <div className="flex flex-col w-full">
         <div className="py-4">
           <div className="flex items-center justify-between mx-2 overflow-hidden">
@@ -43,19 +43,23 @@ export const Sidebar = () => {
             </Button>
           </div>
         </div>
-        <nav className="flex flex-col gap-2 mx-2 overflow-hidden">
-          <NavButton title="Dashboard" path="/dashboard" Icon={Home} />
-          <NavButton title="Contas" path="/accounts" Icon={Wallet} />
-          <NavButton title="Transações" path="/transactions" Icon={CreditCard} />
-          <NavButton title="Investimentos" path="/investments" Icon={BarChart3} />
+        <nav>
+          <ul className="flex flex-col gap-2 mx-2 overflow-hidden">
+            <NavButton title="Dashboard" path="/dashboard" Icon={Home} />
+            <NavButton title="Contas" path="/accounts" Icon={Wallet} />
+            <NavButton title="Transações" path="/transactions" Icon={CreditCard} />
+            <NavButton title="Investimentos" path="/investments" Icon={BarChart3} />
+          </ul>
         </nav>
       </div>
-      <nav className={cn('flex justify-evenly items-center gap-2 mb-4', !isOpen && 'flex-col')}>
-        <NavButton path="/profile" Icon={User} variant="outline" />
-        <NavButton path="/settings" Icon={Settings} variant="outline" />
-        <ThemeToggle />
-        <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
+      <nav className=' mb-4'>
+        <ul className={cn("gap-2 flex justify-evenly items-center", !isOpen && 'flex-col')}>
+          <NavButton path="/profile" Icon={User} variant="outline" />
+          <NavButton path="/settings" Icon={Settings} variant="outline" />
+          <ThemeToggle />
+          <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
+        </ul>
       </nav >
-    </div >
+    </aside >
   )
 }

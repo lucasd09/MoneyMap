@@ -8,6 +8,12 @@ export const users = sqliteTable("users", {
 	password: text("password").notNull(),
 });
 
+export const categories = sqliteTable("categories", {
+	id: integer("id").primaryKey({ autoIncrement: true }),
+	name: text("name").notNull(),
+	description: text("description"),
+});
+
 export const transactions = sqliteTable("transactions", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
 	user_id: integer("user_id").notNull(),
@@ -27,4 +33,12 @@ export const transactionsRelations = relations(transactions, ({ one }) => ({
 		fields: [transactions.user_id],
 		references: [users.id],
 	}),
+	category: one(categories, {
+		fields: [transactions.category_id],
+		references: [categories.id],
+	}),
+}));
+
+export const categoriesRelations = relations(categories, ({ many }) => ({
+	transactions: many(transactions),
 }));
