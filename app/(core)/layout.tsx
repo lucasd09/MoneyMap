@@ -22,7 +22,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
     enableSystem
     disableTransitionOnChange
   >
-    <div className="flex">
+    <div className="flex bg-muted">
       <Sidebar />
       {children}
     </div>
