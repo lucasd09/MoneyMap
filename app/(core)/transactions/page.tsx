@@ -1,5 +1,7 @@
+
 export default function Page() {
-  return <div>
-    transactions
+
+  return <div className="">
+    Transactions
   </div>
 }
