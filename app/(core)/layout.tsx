@@ -25,7 +25,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
   >
     <div className="flex bg-muted">
       <Sidebar />
-      <div className="grow">
+      <div className="grow m-4">
         {children}
       </div>
     </div>

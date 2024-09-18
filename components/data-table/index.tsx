@@ -16,17 +16,20 @@ import {
   TableHeader,
   TableRow,
 } from "./components/table-base"
-import { Button } from "../button"
 import { DataTablePagination } from "./components/data-table-pagination"
+import { DataTableViewOptions } from "./components/data-table-view-options"
+import type { ReactNode } from "react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  create?: ReactNode
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  create
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -36,7 +39,13 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div>
+    <div className="space-y-2">
+      <div className="flex justify-between">
+        <div>
+          {create}
+        </div>
+        <DataTableViewOptions table={table} />
+      </div>
       <div className="rounded-md border dark:border-muted-foreground/20">
         <Table>
           <TableHeader>
