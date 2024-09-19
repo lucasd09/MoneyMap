@@ -11,8 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { login } from "./actions";
 import { toast } from "sonner"
 import { useRouter } from "next/navigation";
-import { useToken } from "@/globals/stores/use-token";
-
+import { useToken } from "@/lib/stores/use-token";
 
 export default function Page() {
 

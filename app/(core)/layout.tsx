@@ -12,7 +12,9 @@ export default function AppLayout({ children }: PropsWithChildren) {
         disableTransitionOnChange
       >
         <Sidebar />
-        {children}
+        <main className="grow p-4">
+          {children}
+        </main>
       </ThemeProvider>
     </div >
   )

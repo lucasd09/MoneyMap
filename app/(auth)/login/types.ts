@@ -1,4 +1,4 @@
-import type { UserToken } from "@/globals/utils/jwt";
+import type { UserToken } from "@/lib/utils/jwt";
 import * as z from "zod";
 
 export type LoginParams = {

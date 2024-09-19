@@ -1,6 +1,6 @@
 'use client';
 import { Button } from "@/components/button";
-import { useSidebar } from "@/globals/stores/use-sidebar";
+import { useSidebar } from "@/lib/stores/use-sidebar";
 import { cn } from "@/lib/utils";
 import {
   BarChart3,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { NavButton } from "./components/nav-button";
-import { useToken } from "@/globals/stores/use-token";
+import { useToken } from "@/lib/stores/use-token";
 
 export const Sidebar = () => {
 

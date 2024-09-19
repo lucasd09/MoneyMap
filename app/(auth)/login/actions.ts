@@ -3,8 +3,8 @@
 import { db } from "@/db";
 import type { LoginParams, LoginResponse } from "./types";
 import { eq } from "drizzle-orm";
-import { users } from "@/db/schema";
-import { generateToken } from "@/globals/utils/jwt";
+import { usersTable } from "@/db/schema";
+import { generateToken } from "@/lib/utils/jwt";
 
 export const login = async (
 	params: LoginParams,
@@ -12,7 +12,7 @@ export const login = async (
 	const { email, password } = params;
 
 	const user = await db.query.users.findFirst({
-		where: eq(users.email, email),
+		where: eq(usersTable.email, email),
 	});
 
 	const passwordMatches = await Bun.password.verify(

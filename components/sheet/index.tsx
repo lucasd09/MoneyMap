@@ -92,7 +92,7 @@ export const Sheet = <TForm extends FieldValues>(props: SheetProps<TForm>) => {
       <SheetContent className='flex h-screen flex-col'>
         <Form {...form}>
           <form className='flex h-full flex-col justify-between' onSubmit={form.handleSubmit(formHandleSubmit)}>
-            <div className='space-y-4'>
+            <div className=''>
               <SheetHeader onClose={() => setIsOpen(false)}>
                 <SheetTitle>{title}</SheetTitle>
               </SheetHeader>

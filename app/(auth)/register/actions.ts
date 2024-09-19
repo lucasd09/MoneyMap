@@ -3,14 +3,14 @@
 import { db } from "@/db";
 import type { RegisterParams } from "./types";
 import { eq } from "drizzle-orm";
-import { users } from "@/db/schema";
-import { generateToken } from "@/globals/utils/jwt";
+import { usersTable } from "@/db/schema";
+import { generateToken } from "@/lib/utils/jwt";
 
 export const register = async (params: RegisterParams) => {
 	const { email, password, name } = params;
 
 	const registeredUser = await db.query.users.findFirst({
-		where: eq(users.email, email),
+		where: eq(usersTable.email, email),
 	});
 
 	if (registeredUser) {
@@ -21,7 +21,7 @@ export const register = async (params: RegisterParams) => {
 
 	try {
 		const createdUsers = await db
-			.insert(users)
+			.insert(usersTable)
 			.values({ email: email, name: name || "", password: hashedPassword })
 			.returning()
 			.execute();
