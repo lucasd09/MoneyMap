@@ -52,14 +52,12 @@ export const Sidebar = () => {
           </ul>
         </nav>
       </div>
-      <nav className=' mb-4'>
-        <ul className={cn("gap-2 flex justify-evenly items-center", !isOpen && 'flex-col')}>
-          <NavButton path="/profile" Icon={User} variant="outline" />
-          <NavButton path="/settings" Icon={Settings} variant="outline" />
-          <ThemeToggle />
-          <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
-        </ul>
-      </nav >
+      <nav className={cn('flex justify-evenly items-center gap-2 mb-4', !isOpen && 'flex-col')}>
+        <NavButton path="/profile" Icon={User} variant="outline" />
+        <NavButton path="/settings" Icon={Settings} variant="outline" />
+        <ThemeToggle />
+        <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
+      </nav>
     </aside >
   )
 }

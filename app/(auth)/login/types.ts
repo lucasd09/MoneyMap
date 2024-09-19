@@ -7,8 +7,10 @@ export type LoginParams = {
 };
 
 export const loginSchema = z.object({
-	email: z.string().email(),
-	password: z.string(),
+	email: z
+		.string({ required_error: "Campo obrigatório" })
+		.email({ message: "E-mail inválido" }),
+	password: z.string({ required_error: "Campo obrigatório" }),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
