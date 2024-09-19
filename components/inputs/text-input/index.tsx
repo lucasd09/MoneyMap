@@ -5,7 +5,7 @@ import type { FieldValues, Path, PathValue } from "react-hook-form"
 import { BaseInput } from "@/components/commom/base-input"
 
 export const TextInput = <TForm extends FieldValues>(props: TextInputProps<TForm>) => {
-  const { name, label, form, ...TextInputProps } = props;
+  const { name, label, form, ...textInputProps } = props;
 
   return (
     <FormField
@@ -19,7 +19,7 @@ export const TextInput = <TForm extends FieldValues>(props: TextInputProps<TForm
               <BaseInput
                 placeholder={props.placeholder}
                 type="text"
-                {...TextInputProps}
+                {...textInputProps}
                 value={field.value || ''}
                 onChange={field.onChange}
                 onBlur={field.onBlur}
