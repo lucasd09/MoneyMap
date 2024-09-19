@@ -43,11 +43,13 @@ export const Sidebar = () => {
             </Button>
           </div>
         </div>
-        <nav className="flex flex-col gap-2 mx-2 overflow-hidden">
-          <NavButton title="Dashboard" path="/dashboard" Icon={Home} />
-          <NavButton title="Contas" path="/accounts" Icon={Wallet} />
-          <NavButton title="Transações" path="/transactions" Icon={CreditCard} />
-          <NavButton title="Investimentos" path="/investments" Icon={BarChart3} />
+        <nav>
+          <ul className="flex flex-col gap-2 mx-2 overflow-hidden">
+            <NavButton title="Dashboard" path="/dashboard" Icon={Home} />
+            <NavButton title="Contas" path="/accounts" Icon={Wallet} />
+            <NavButton title="Transações" path="/transactions" Icon={CreditCard} />
+            <NavButton title="Investimentos" path="/investments" Icon={BarChart3} />
+          </ul>
         </nav>
       </div>
       <nav className={cn('flex justify-evenly items-center gap-2 mb-4', !isOpen && 'flex-col')}>

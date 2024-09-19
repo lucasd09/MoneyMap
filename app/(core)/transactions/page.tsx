@@ -1,5 +1,3 @@
 export default function Page() {
-  return <div>
-    transactions
-  </div>
+  return <div className="">Transactions</div>
 }
