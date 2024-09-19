@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, type PersistStorage } from "zustand/middleware";
 import type { UseSidebarState } from "./types";
 
 export const useSidebar = create<UseSidebarState>()(
@@ -10,7 +10,6 @@ export const useSidebar = create<UseSidebarState>()(
 		}),
 		{
 			name: "sidebar-storage",
-			getStorage: () => localStorage,
 		},
 	),
 );

@@ -29,7 +29,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className={cn("flex h-screen flex-col justify-between border-r bg-background dark:bg-muted dark:border-muted-foreground/20 transition-all duration-150 ease-out", isOpen ? 'w-64' : 'w-[53px]')}>
+    <aside className={cn("flex h-screen flex-col justify-between border-r bg-background dark:bg-muted dark:border-muted-foreground/20 transition-all duration-150 ease-out", isOpen ? 'w-64' : 'w-[53px]')}>
       <div className="flex flex-col w-full">
         <div className="py-4">
           <div className="flex items-center justify-between mx-2 overflow-hidden">
@@ -55,7 +55,7 @@ export const Sidebar = () => {
         <NavButton path="/settings" Icon={Settings} variant="outline" />
         <ThemeToggle />
         <NavButton Icon={LogOut} variant="outline" onClick={handleLogout} path="/login" />
-      </nav >
-    </div >
+      </nav>
+    </aside >
   )
 }
