@@ -11,7 +11,7 @@ export const login = async (
 ): Promise<LoginResponse | undefined> => {
 	const { email, password } = params;
 
-	const user = await db.query.users.findFirst({
+	const user = await db.query.usersTable.findFirst({
 		where: eq(usersTable.email, email),
 	});
 

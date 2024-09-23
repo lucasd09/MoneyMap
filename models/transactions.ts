@@ -1,4 +1,4 @@
-import type { transactionsTable } from "@/db/schema";
+import { transactionsTable } from "@/db/schemas/transactions-schema";
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 
 export type Transaction = InferSelectModel<typeof transactionsTable>;

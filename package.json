@@ -6,7 +6,9 @@
     "dev": "bun --bun run next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "bun drizzle-kit generate",
+    "migrate": "bun drizzle-kit migrate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

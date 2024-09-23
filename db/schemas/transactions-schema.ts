@@ -1,32 +1,17 @@
 import { sqliteTable, integer, text, real } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
-
-export const usersTable = sqliteTable("users", {
-	id: integer("id").primaryKey(),
-	name: text("name").notNull(),
-	email: text("email").notNull().unique(),
-	password: text("password").notNull(),
-});
-
-export const categoriesTable = sqliteTable("categories", {
-	id: integer("id").primaryKey(),
-	name: text("name").notNull(),
-	description: text("description"),
-});
+import { usersTable } from "./users-schema";
+import { categoriesTable } from "./categories-schema";
 
 export const transactionsTable = sqliteTable("transactions", {
 	id: integer("id").primaryKey(),
 	userId: integer("user_id").notNull(),
 	amount: real("amount").notNull(),
-	type: text("type").notNull(), // 'income' ou 'expense'
+	type: text("type", { enum: ["income", "expense"] }).notNull(),
 	description: text("description").notNull(),
 	categoryId: integer("category_id").notNull(),
 	date: text("date").notNull(),
 });
-
-export const usersRelations = relations(usersTable, ({ many }) => ({
-	transactions: many(transactionsTable),
-}));
 
 export const transactionsRelations = relations(
 	transactionsTable,
@@ -41,7 +26,3 @@ export const transactionsRelations = relations(
 		}),
 	}),
 );
-
-export const categoriesRelations = relations(categoriesTable, ({ many }) => ({
-	transactions: many(transactionsTable),
-}));

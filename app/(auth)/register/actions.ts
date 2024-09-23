@@ -9,7 +9,7 @@ import { generateToken } from "@/lib/utils/jwt";
 export const register = async (params: RegisterParams) => {
 	const { email, password, name } = params;
 
-	const registeredUser = await db.query.users.findFirst({
+	const registeredUser = await db.query.usersTable.findFirst({
 		where: eq(usersTable.email, email),
 	});
 
