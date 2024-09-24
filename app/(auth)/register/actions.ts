@@ -3,8 +3,8 @@
 import { db } from "@/db";
 import type { RegisterParams } from "./types";
 import { eq } from "drizzle-orm";
-import { usersTable } from "@/db/schema";
 import { generateToken } from "@/lib/utils/jwt";
+import { usersTable } from "@/db/schemas";
 
 export const register = async (params: RegisterParams) => {
 	const { email, password, name } = params;

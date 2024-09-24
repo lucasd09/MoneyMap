@@ -3,8 +3,8 @@
 import { db } from "@/db";
 import type { LoginParams, LoginResponse } from "./types";
 import { eq } from "drizzle-orm";
-import { usersTable } from "@/db/schema";
 import { generateToken } from "@/lib/utils/jwt";
+import { usersTable } from "@/db/schemas";
 
 export const login = async (
 	params: LoginParams,
