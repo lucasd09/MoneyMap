@@ -1,7 +1,7 @@
 'use client'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/form"
 import type { TextInputProps } from "./types"
-import type { FieldValues, Path, PathValue } from "react-hook-form"
+import type { FieldValues } from "react-hook-form"
 import { BaseInput } from "@/components/commom/base-input"
 
 export const TextInput = <TForm extends FieldValues>(props: TextInputProps<TForm>) => {
