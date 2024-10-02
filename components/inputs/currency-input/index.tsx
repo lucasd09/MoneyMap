@@ -1,7 +1,7 @@
 'use client'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/form"
 import type { FieldValues } from "react-hook-form"
-import { BaseInput } from "@/components/commom/base-input"
+import { BaseInput } from "@/components/inputs/commom/base-input"
 import { format } from "./consts"
 import { useReducer } from "react"
 import { CurrencyInputProps } from "./types"

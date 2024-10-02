@@ -100,7 +100,7 @@ export const Sheet = <TForm extends FieldValues>(props: SheetProps<TForm>) => {
             </div>
             <SheetFooter>
               <Close>
-                <Button onClick={handleClose} variant={'outline'}>
+                <Button onClick={handleClose} variant={'outline'} type='reset'>
                   Fechar
                 </Button>
               </Close>

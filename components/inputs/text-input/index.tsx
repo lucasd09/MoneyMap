@@ -2,7 +2,7 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/form"
 import type { TextInputProps } from "./types"
 import type { FieldValues } from "react-hook-form"
-import { BaseInput } from "@/components/commom/base-input"
+import { BaseInput } from "@/components/inputs/commom/base-input"
 
 export const TextInput = <TForm extends FieldValues>(props: TextInputProps<TForm>) => {
   const { name, label, form, ...textInputProps } = props;
